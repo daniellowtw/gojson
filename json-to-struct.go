@@ -345,7 +345,7 @@ func generateTypes(obj map[string]interface{}, structName string, tags []string,
 			tagList = append(tagList, fmt.Sprintf("%s:\"%s\"", t, key))
 		}
 
-		structure += fmt.Sprintf("\n%s %s `%s`",
+		structure += fmt.Sprintf("\n%s *%s `%s`",
 			fieldName,
 			valueType,
 			strings.Join(tagList, " "))
