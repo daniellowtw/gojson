@@ -63,9 +63,11 @@ var (
 	tags        = flag.String("tags", "fmt", "comma seperated list of the tags to put on the struct, default is the same as fmt")
 	forceFloats = flag.Bool("forcefloats", false, "[experimental] force float64 type for integral values")
 	subStruct   = flag.Bool("subStruct", false, "create types for sub-structs (default is false)")
+
 )
 
 func main() {
+	flag.BoolVar(&OmitEmpty, "omit-empty", false, "[experimental] add a omitempty to the value as a tag")
 	flag.Parse()
 
 	if *format != "json" && *format != "yaml" {

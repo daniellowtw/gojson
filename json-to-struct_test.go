@@ -41,6 +41,20 @@ func TestInvalidFieldChars(t *testing.T) {
 	}
 }
 
+// TestInvalidFieldChars tests that a document with invalid field chars is handled correctly
+func TestOmitEmpty(t *testing.T) {
+	OmitEmpty = true
+	i := strings.NewReader(`{"foo" : 42}`)
+	x, err := Generate(i, ParseJson, "TestStruct", "gojson", []string{"json"}, false)
+	if err != nil {
+		t.Error("Generate() error:", err)
+	}
+	if !strings.Contains(string(x), "foo,omitempty") {
+		t.Error("Did not contain omit empty in json output")
+	}
+	OmitEmpty = false
+}
+
 // TestDisambiguateFloatInt tests that disambiguateFloatInt correctly
 // converts JSON numbers to the desired types.
 func TestDisambiguateFloatInt(t *testing.T) {

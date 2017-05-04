@@ -7,6 +7,7 @@ gojson generates go struct definitions from json or yaml documents.
 This is a modification of the original gojson library that supports the following:
 
 * Pointer types to allow detection of omitted fields from the JSON input
+* Omit empty support so that null fields are not generated when using marshalling
 
 Note that the example given below has not been updated to reflect the changes I've done.
 

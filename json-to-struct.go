@@ -113,6 +113,7 @@ import (
 )
 
 var ForceFloats bool
+var OmitEmpty bool
 
 // commonInitialisms is a set of common initialisms.
 // Only add entries that are highly unlikely to be non-initialisms.
@@ -342,6 +343,9 @@ func generateTypes(obj map[string]interface{}, structName string, tags []string,
 
 		tagList := make([]string, 0)
 		for _, t := range tags {
+			if OmitEmpty {
+				key = key + ",omitempty"
+			}
 			tagList = append(tagList, fmt.Sprintf("%s:\"%s\"", t, key))
 		}
 
